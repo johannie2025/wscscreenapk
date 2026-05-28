@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdk 34
+    namespace 'com.wisesmartchurch.screen'
+
+    defaultConfig {
+        applicationId   "com.wisesmartchurch.screen"
+        minSdk          21          // Android 5.0 — couvre 99% des TV Boxes
+        targetSdk       34
+        versionCode     1
+        versionName     "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled   false   // pas d'obfuscation pour faciliter le debug TV
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug   // remplacer par votre keystore en prod
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix   "-debug"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    // Packaging pour éviter les conflits OkHttp/okio
+    packagingOptions {
+        resources.excludes.add("META-INF/INDEX.LIST")
+        resources.excludes.add("META-INF/io.netty.versions.properties")
+    }
+}
+
+dependencies {
+    // AppCompat (AlertDialog, AppCompatActivity)
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+
+    // OkHttp WebSocket (léger ~800 KB, pas de JetBrains/Kotlin requis)
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+
+    // JSON (org.json est inclus dans Android SDK)
+    // Pas de dépendance supplémentaire nécessaire
+
+    // Material Design (dialogs + thème)
+    implementation 'com.google.android.material:material:1.12.0'
+}
