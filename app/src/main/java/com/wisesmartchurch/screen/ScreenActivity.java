@@ -175,17 +175,8 @@ public class ScreenActivity extends AppCompatActivity
             tvVerse.setVisibility(text.isEmpty() ? View.INVISIBLE : View.VISIBLE);
             tvRef.setVisibility(ref.isEmpty()   ? View.GONE       : View.VISIBLE);
 
-            /* Taille de police adaptative (vw % → sp) */
-            String fsStr = p.optString("fontSize", "5vw")
-                             .replaceAll("[^0-9.]", "");
-            try {
-                float vw = Float.parseFloat(fsStr);
-                float displayWidthDp = getResources().getDisplayMetrics().widthPixels
-                                       / getResources().getDisplayMetrics().density;
-                float sp = (displayWidthDp * vw / 100f) * 0.72f;
-                sp = Math.min(Math.max(sp, 18f), 120f);
-                tvVerse.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, sp);
-            } catch (Exception ignored) {}
+            /* Taille gérée par autoSizeText dans le layout XML */
+            /* Le texte s'ajuste automatiquement entre 24sp et 120sp */
 
             applyBg(p.optJSONObject("bg"));
         } catch (Exception e) { Log.e(TAG, "renderVerse", e); }

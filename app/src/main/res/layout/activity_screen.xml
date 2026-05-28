@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/screen_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,18 +10,24 @@
     android:focusableInTouchMode="true">
 
     <!-- ══ TEXTE PRINCIPAL (verset / lyric / annonce) ══ -->
+    <!-- padding réduit à 32dp pour maximiser la zone d'affichage -->
+    <!-- autoSizeText : le texte se réduit si trop long, monte jusqu'à 120sp -->
     <TextView
         android:id="@+id/tv_verse"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:padding="64dp"
+        android:padding="32dp"
         android:text=""
         android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        android:lineSpacingMultiplier="1.25"
+        android:textSize="72sp"
+        android:lineSpacingMultiplier="1.2"
         android:visibility="invisible"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="24sp"
+        app:autoSizeMaxTextSize="120sp"
+        app:autoSizeStepGranularity="2sp" />
 
     <!-- ══ RÉFÉRENCE / SOUS-TITRE ══ -->
     <TextView
@@ -28,10 +35,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:text=""
         android:textColor="#D97706"
-        android:textSize="22sp"
+        android:textSize="24sp"
         android:letterSpacing="0.06"
         android:visibility="gone"
         android:elevation="4dp" />
@@ -47,14 +54,12 @@
         android:alpha="0"
         android:elevation="6dp">
 
-        <!-- Barre colorée -->
         <View
             android:id="@+id/lt_bar"
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:background="#D97706" />
 
-        <!-- Fond semi-transparent -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="#FFFFFF"
-                android:textSize="26sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.04" />
 
@@ -81,13 +86,13 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="#D97706"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:letterSpacing="0.08"
                 android:layout_marginTop="2dp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- ══ INDICATEUR IP / SCREEN ID (visible 5s au démarrage) ══ -->
+    <!-- ══ INDICATEUR IP / SCREEN ID ══ -->
     <TextView
         android:id="@+id/tv_screen_info"
         android:layout_width="wrap_content"
@@ -101,7 +106,7 @@
         android:visibility="gone"
         android:elevation="8dp" />
 
-    <!-- ══ STATUT CONNEXION (affiché lors de connexion/déconnexion) ══ -->
+    <!-- ══ STATUT CONNEXION ══ -->
     <TextView
         android:id="@+id/tv_conn_status"
         android:layout_width="wrap_content"
