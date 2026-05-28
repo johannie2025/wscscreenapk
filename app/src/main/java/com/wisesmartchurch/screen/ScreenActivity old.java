@@ -167,17 +167,8 @@ public class ScreenActivity extends AppCompatActivity
             String ref   = p.optString("ref",   "");
             String color = p.optString("color", "#FFFFFF");
 
-            /* ── Formatage forcé : MAJUSCULES + GRAS + JUSTIFIÉ ── */
-            tvVerse.setText(text.toUpperCase());
-            tvRef.setText(ref.toUpperCase());
-
-            /* Gras programmatique (renforce le textStyle XML) */
-            tvVerse.setTypeface(tvVerse.getTypeface(), android.graphics.Typeface.BOLD);
-
-            /* Justification inter-mots (API 26+) */
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                tvVerse.setJustificationMode(android.text.Layout.JUSTIFICATION_MODE_INTER_WORD);
-            }
+            tvVerse.setText(text);
+            tvRef.setText(ref);
             try { tvVerse.setTextColor(android.graphics.Color.parseColor(color)); }
             catch (Exception e) { tvVerse.setTextColor(0xFFFFFFFF); }
 
