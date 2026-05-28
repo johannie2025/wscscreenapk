@@ -1,4 +1,4 @@
-package com.wisesmartchurch.app;
+package com.wisesmartchurch.screen;
 
 import android.content.Context;
 import android.util.Log;
@@ -139,7 +139,7 @@ public class WscUdpAnnounce extends Thread {
         return "127.0.0.1";
     }
 
-    public void stop() {
+    public void stopAnnounce() {
         running = false;
         if (socket != null && !socket.isClosed()) socket.close();
     }

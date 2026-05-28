@@ -109,7 +109,7 @@ public class WscUdpDiscovery extends Thread {
         } catch (Exception e) { /* ignorer */ }
     }
 
-    public void stop() {
+    public void stopDiscovery() {
         running = false;
         if (socket != null && !socket.isClosed()) socket.close();
     }

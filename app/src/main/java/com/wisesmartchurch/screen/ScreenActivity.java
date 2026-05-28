@@ -400,7 +400,7 @@ public class ScreenActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         if (wsClient    != null) wsClient.disconnect();
-        if (udpDiscovery != null) udpDiscovery.stop();
+        if (udpDiscovery != null) udpDiscovery.stopDiscovery();
     }
 
     @Override
